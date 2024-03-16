@@ -1,5 +1,5 @@
 # BOOMberg: An MLB Win$ App
-How valuable is a win? BOOMberg uses MLB contract (AAV) and win projection (WAR) data from Fangraphs to calculate and visualize win value (win$). Hold players in your portfolio, make trades, and maximize your dollars and wins.
+How valuable is a win? BOOMberg uses MLB contract (AAV) and win projection (WAR) data from Fangraphs to calculate and visualize win value (Win$). Hold players in your portfolio, make trades, and maximize your dollars and wins.
 
 ### How did the project's design evolve over time?
 I originally wanted to track MLB Teams and Players using real data as a Python exercise and proof of concept, but with that data, I realized I could extrapolate this into a salary cap fantasy game.
