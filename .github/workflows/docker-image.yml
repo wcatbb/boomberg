@@ -15,8 +15,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file boomberg/Dockerfile --tag wcatbb/boomberg:$(date +%s)
-
+      run: docker build -f boomberg/Dockerfile -t wcatbb/boomberg:$(date +%s) boomberg/
+      
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
       with:
