@@ -2,7 +2,6 @@ from flask_sqlalchemy import SQLAlchemy
 from src.models import Transaction, mlbplayers_portfolios_bridge
 
 db = SQLAlchemy()
-
 # Define event listener for Transaction creation
 @db.event.listens_for(Transaction, 'after_insert')
 def update_mlbplayers_portfolios(mapper, connection, target):
