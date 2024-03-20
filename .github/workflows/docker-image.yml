@@ -24,4 +24,4 @@ jobs:
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
     - name: Push Docker image to Docker Hub
-      run: docker push wcatbb/boomberg:$(date +%s)
+      run: docker push wcatbb/boomberg:v1
