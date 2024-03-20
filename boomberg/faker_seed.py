@@ -14,6 +14,7 @@ from src import create_app
 USER_COUNT = 50
 PORTFOLIO_COUNT = 50
 
+
 def random_passhash():
     """Get hashed and salted password of length N | 8 <= N <= 15"""
     raw = "".join(
@@ -26,6 +27,7 @@ def random_passhash():
     salt = secrets.token_hex(16)
     return hashlib.sha512((raw + salt).encode("utf-8")).hexdigest()
 
+
 def truncate_tables():
     """Delete all rows from database tables"""
     MLBPlayer.query.delete()
@@ -34,6 +36,7 @@ def truncate_tables():
     User.query.delete()
     db.session.commit()
 
+
 def main():
     """Main driver function"""
     app = create_app()
@@ -41,7 +44,7 @@ def main():
     truncate_tables()
     fake = Faker()
 
-    user_ids = [] # List to store user IDs
+    user_ids = []  # List to store user IDs
     for _ in range(USER_COUNT):
         fake_username = fake.unique.first_name().lower() + str(random.randint(1, 150))
         fake_name = fake.name()
@@ -53,7 +56,7 @@ def main():
             name=fake_name,
             email=fake_email,
             password=fake_password,
-            fav_team= None,
+            fav_team=None,
         )
         db.session.add(new_user)
         db.session.commit()  # Commit to generate user IDs
@@ -80,11 +83,16 @@ def main():
     # Insert MLB teams data
     mlbteam_data = mlbteam_scraper()
     if mlbteam_data is not None:
-        mlbteam_data.to_sql('mlbteams', db.engine, if_exists='append', index=False)
-        
-    # TODO: Determine Replacements Team Payroll
+        mlbteam_data.to_sql("mlbteams", db.engine, if_exists="append", index=False)
+
+    # Replacements Lux Tax Payroll:
+    # 1) 34 MLB player-seasons @ league min to account for injury ($25.16M)
+    # 2) Estimated salaries for 40-man roster minor leaguers ($2.5M)
+    # 3) Estimated player benefits ($17M)
+    # 4) Payment into pre-arb bonus pool ($1.67M)
+
     replacements_team = MLBTeam(
-        fg_id=0,  # Example ID for replacements team
+        fg_id=0,
         short_name="Replacements",
         abb_name="REP",
         league="AL",
@@ -94,8 +102,8 @@ def main():
         GB=0,
         xW=48,
         xL=114,
-        payroll=0,
-        win_spend=0,
+        payroll=46330000,
+        win_spend=965209,
     )
     db.session.add(replacements_team)
     db.session.commit()
@@ -124,9 +132,9 @@ def main():
             # Add the player to the session
             db.session.add(player)
 
-
     # TODO: Insert Replacement Players
 
     db.session.commit()
+
 
 main()

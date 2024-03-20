@@ -67,7 +67,7 @@ class MLBTeam(db.Model):
 
 mlbplayers_portfolios_bridge = db.Table(
     "mlbplayers_portfolios",
-    db.Column("mlbplayer_fgid", db.Integer, db.ForeignKey("mlbplayers.fg_id"), primary_key=True),
+    db.Column("mlbplayer_fgid", db.Integer, db.ForeignKey("mlbplayers.fg_id", ondelete="CASCADE"), primary_key=True),
     db.Column("portfolio_id", db.Integer, db.ForeignKey("portfolios.id", ondelete="CASCADE"), primary_key=True),
 )
 
@@ -195,7 +195,7 @@ class Transaction(db.Model):
     __tablename__ = "mlbplayers_portfolios_transactions"
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
-    mlbplayer_fgid = db.Column(db.Integer, db.ForeignKey("mlbplayers.fg_id"))
+    mlbplayer_fgid = db.Column(db.Integer, db.ForeignKey("mlbplayers.fg_id", ondelete="SET NULL"))
     portfolio_id = db.Column(db.Integer, db.ForeignKey("portfolios.id", ondelete="SET NULL"))
     kind = db.Column(db.Text, nullable=False)
     dollars = db.Column(db.Numeric, nullable=False)
