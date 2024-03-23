@@ -1,15 +1,12 @@
-from src.data.replacements import build_replacement_players
 import pandas as pd
 import requests
-
-#TODO Determine Franchise Base Cost (Team Payroll - 26 man AAV); use it to add to The Replacements Franchise Payroll
 
 def mlbteam_scraper():
     # URL for FG projected standings
     x_standings_url = "https://www.fangraphs.com/depthcharts.aspx?position=Standings"
 
     # Read projections data into a DataFrame
-    x_standings_df = pd.read_html(x_standings_url)[7]
+    x_standings_df = pd.read_html(x_standings_url)[6]
 
     # Extract team data
     x_wins = x_standings_df[("2024 Projected Full Season", "W")]

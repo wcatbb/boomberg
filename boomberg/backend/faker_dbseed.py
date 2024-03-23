@@ -30,9 +30,9 @@ def random_passhash():
 
 def truncate_tables():
     """Delete all rows from database tables"""
+    Portfolio.query.delete()
     MLBPlayer.query.delete()
     MLBTeam.query.delete()
-    Portfolio.query.delete()
     User.query.delete()
     db.session.commit()
 
@@ -95,11 +95,11 @@ def main():
         fg_id=0,
         short_name="Replacements",
         abb_name="REP",
-        league="AL",
-        division="W",
+        league="AL_NL",
+        division="W_C_E",
         W=48,
         L=114,
-        GB=0,
+        GB=0.0,
         xW=48,
         xL=114,
         payroll=46330000,

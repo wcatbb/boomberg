@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from src.models import Transaction, mlbplayers_portfolios_bridge
+from .models import Transaction, mlbplayers_portfolios_bridge
 
 db = SQLAlchemy()
 # Define event listener for Transaction creation

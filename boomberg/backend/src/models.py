@@ -95,6 +95,7 @@ class MLBPlayer(db.Model):
         backref=db.backref("players_portfolios", lazy=True),
         overlaps="players_portfolios,portfolios",
         viewonly=True,
+        cascade="all,delete"
     )
 
     # constructor
@@ -163,6 +164,7 @@ class Portfolio(db.Model):
         backref=db.backref("portfolios_players", lazy=True),
         overlaps="players_portfolios,portfolios",
         viewonly=True,
+        cascade="all,delete"
     )
 
 
