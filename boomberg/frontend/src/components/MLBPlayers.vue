@@ -87,8 +87,8 @@ export default {
   },
   methods: {
     getResponse() {
-      const playersPath = "http://localhost:5000/mlbplayers";
-      const teamsPath = "http://localhost:5000/mlbteams";
+      const playersPath = "http://192.168.1.202:5000/mlbplayers";
+      const teamsPath = "http://192.168.1.202:5000/mlbteams";
       axios
         .all([axios.get(playersPath), axios.get(teamsPath)])
         .then(

@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     getResponse() {
-      const path = "http://localhost:5000/mlbteams";
+      const path = "http://192.168.1.202:5000/mlbteams";
       axios
         .get(path)
         .then((res) => {
