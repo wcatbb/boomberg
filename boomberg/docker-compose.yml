@@ -27,7 +27,7 @@ services:
         ports:
             - "5432:5432"
         volumes:
-            - "${PWD}/database/initdb/:/docker-entrypoint-initdb.d/"
+            - "${PWD}/backend/database/initdb/:/docker-entrypoint-initdb.d/"
 
     pgadmin:
         container_name: pgadmin_container_boomberg

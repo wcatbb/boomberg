@@ -1,5 +1,6 @@
 import os
 from flask import Flask, jsonify
+from flask_cors import CORS
 from flask_migrate import Migrate
 
 # https://flask.palletsprojects.com/en/2.0.x/patterns/appfactories/
@@ -14,7 +15,9 @@ def create_app(test_config=None):
         SQLALCHEMY_ECHO=True
     )
 
-    @app.route("/")
+    CORS(app, resources={r"/*":{'origins':"*"}})
+
+    @app.route("/", methods=['GET'])
     def hello_world():
         return jsonify(hello="world")
 

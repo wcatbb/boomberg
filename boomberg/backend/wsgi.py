@@ -1,4 +1,4 @@
-from backend.src import create_app # for alembic migration, omit 'backend.' from create_app import (backend. is req for Docker web service to run)
+from backend.src import create_app # to run flask locally, omit 'backend.' from create_app import (backend. is req for Docker web service to run)
 
 app = create_app()
 
